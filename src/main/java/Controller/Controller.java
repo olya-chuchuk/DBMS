@@ -14,7 +14,7 @@ public class Controller {
     private Set<Database> databaseSet;
 
     public Controller() {
-        databaseSet = new HashSet<Database>();
+        databaseSet = new HashSet<>();
     }
 
     public boolean createDatabase(String dbName) {

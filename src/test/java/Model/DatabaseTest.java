@@ -11,7 +11,6 @@ public class DatabaseTest {
 
     @Test
     public void createDatabaseAndGetNameWithEmptyStructure() {
-        DatabaseStructure dbStructure = new DatabaseStructure();
         String dbName = "My new DB";
         Database db = new Database(dbName);
 

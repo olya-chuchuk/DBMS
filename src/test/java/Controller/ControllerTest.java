@@ -1,7 +1,8 @@
 package Controller;
 
+import Exceptions.DuplicateTableNameException;
 import Exceptions.IllegalPrimaryKeyException;
-import Exceptions.NoPrimaryKeyExcpetion;
+import Exceptions.NoPrimaryKeyException;
 import Exceptions.NoSuchTableException;
 import Model.*;
 import org.junit.Test;
@@ -49,15 +50,14 @@ public class ControllerTest {
         controller.createDatabase(dbName);
         TableConfig tableConfig = new TableConfig();
         tableConfig.addColumn("Column", ColumnType.IntegerType, true);
-        boolean isAdded = controller.getDatabase(dbName).addTable(tableName, tableConfig);
+        controller.getDatabase(dbName).addTable(tableName, tableConfig);
 
         Table table = controller.getDatabase(dbName).getTable(tableName);
 
-        assertTrue(isAdded);
         assertEquals(tableName, table.getName());
     }
 
-    @Test
+    @Test(expected = DuplicateTableNameException.class)
     public void addTwoTablesWithSameNameIntoOneDB() {
         String dbName = "My DB";
         String tableName = "My table";
@@ -66,12 +66,7 @@ public class ControllerTest {
         TableConfig tableConfig = new TableConfig();
         tableConfig.addColumn("Column", ColumnType.IntegerType, true);
         controller.getDatabase(dbName).addTable(tableName, tableConfig);
-        boolean isAdded = controller.getDatabase(dbName).addTable(tableName, tableConfig);
-
-        Table table = controller.getDatabase(dbName).getTable(tableName);
-
-        assertFalse(isAdded);
-        assertEquals(tableName, table.getName());
+        controller.getDatabase(dbName).addTable(tableName, tableConfig);
     }
 
     @Test
@@ -206,7 +201,7 @@ public class ControllerTest {
         assertEquals(ColumnType.PictureType, column.getColumnType());
     }
 
-    @Test(expected = NoPrimaryKeyExcpetion.class)
+    @Test(expected = NoPrimaryKeyException.class)
     public void createTableWithNoKey() {
         String dbName = "My DB";
         String tableName = "My table";
