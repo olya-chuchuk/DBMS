@@ -1,4 +1,9 @@
-import database.*;
+package Controller;
+
+import Exceptions.IllegalPrimaryKeyException;
+import Exceptions.NoPrimaryKeyExcpetion;
+import Exceptions.NoSuchTableException;
+import Model.*;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -191,11 +196,12 @@ public class ControllerTest {
         Database db = controller.getDatabase(dbName);
         String tableName = "My table";
         TableConfig config = new TableConfig();
-        config.addColumn("Picture column", ColumnType.PictureType, true);
+        config.addColumn("Primary key", ColumnType.IntegerType, true);
+        config.addColumn("Picture column", ColumnType.PictureType);
         db.addTable(tableName, config);
 
         Table table = db.getTable(tableName);
-        Column column = table.getColumns().get(0);
+        Column column = table.getColumns().get(1);
 
         assertEquals(ColumnType.PictureType, column.getColumnType());
     }
@@ -213,80 +219,9 @@ public class ControllerTest {
         db.addTable(tableName, tableConfig);
     }
 
-    @Test
-    public void addRowIntoTable() {
-        Controller controller = new Controller();
-
-        String dbName = "My database";
-        controller.createDatabase(dbName);
-        Database database = controller.getDatabase(dbName);
-
-        String tableName = "My table";
+    @Test(expected = IllegalPrimaryKeyException.class)
+    public void createTableConfigWithPrimaryKeyOnPictureColumn() {
         TableConfig config = new TableConfig();
-        config.addColumn("Primary key column", ColumnType.IntegerType, true);
-        config.addColumn("Char column", ColumnType.IntegerType, true);
-        config.addColumn("First column", ColumnType.IntegerType, true);
-        database.addTable(tableName, config);
-
-        Table table = database.getTable(tableName);
-        List<String> row = Arrays.asList("1")
-        table.addRow()
+        config.addColumn("Picture column", ColumnType.PictureType, true);
     }
-
-    @Test
-    public void addRowWithDuplicateKey() {
-
-    }
-
-    @Test
-    public void addRowWithWrongTypes() {
-
-    }
-
-    @Test
-    public void addRowWithWrongNumberOfParameters() {
-
-    }
-
-    @Test
-    public void readRowsFromTable() {
-
-    }
-
-    @Test
-    public void updateExistingRow() {
-
-    }
-
-    @Test
-    public void updateRowWithDuplicateKey() {
-
-    }
-
-    @Test
-    public void updateRowWithWrongTypes() {
-
-    }
-
-    @Test
-    public void updateRowWithWrongNumberOfParameters() {
-
-    }
-
-    @Test
-    public void updateNonExistingRow() {
-
-    }
-
-    @Test
-    public void deleteExistingRow() {
-
-    }
-
-    @Test
-    public void deleteNonExistingRow() {
-
-    }
-
-    //todo add test for primary keys on different types of columns
 }

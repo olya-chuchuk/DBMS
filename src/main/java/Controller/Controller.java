@@ -1,4 +1,7 @@
-import database.Database;
+package Controller;
+
+import Exceptions.NoSuchDatabaseException;
+import Model.Database;
 
 import java.util.HashSet;
 import java.util.Set;

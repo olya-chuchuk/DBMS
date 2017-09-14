@@ -1,4 +1,6 @@
-package database;
+package Model;
+
+import Exceptions.NoSuchTableException;
 
 import java.util.HashSet;
 import java.util.Set;

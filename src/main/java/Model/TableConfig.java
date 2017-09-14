@@ -1,4 +1,7 @@
-package database;
+package Model;
+
+import Exceptions.IllegalPrimaryKeyException;
+import Exceptions.NoPrimaryKeyExcpetion;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -22,6 +25,9 @@ public class TableConfig {
     }
 
     public void addColumn(String s, ColumnType charType, boolean isPrimary) {
+        if(isPrimary && charType.equals(ColumnType.PictureType)) {
+            throw new IllegalPrimaryKeyException();
+        }
         columns.add(new Column(s, charType));
         if(isPrimary) {
             keyColumn = columns.size() - 1;
