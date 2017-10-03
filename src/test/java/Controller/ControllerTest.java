@@ -4,7 +4,7 @@ import Exceptions.DuplicateTableNameException;
 import Exceptions.IllegalPrimaryKeyException;
 import Exceptions.NoPrimaryKeyException;
 import Exceptions.NoSuchTableException;
-import Model.*;
+import domain.*;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -220,11 +220,11 @@ public class ControllerTest {
         config.addColumn("Primary key column", ColumnType.IntegerType, true);
         config.addColumn("Char column", ColumnType.IntegerType, true);
         config.addColumn("First column", ColumnType.IntegerType, true);
-        database.addTable(tableName, config);
-
-        Table table = database.getTable(tableName);
-        List<String> row = Arrays.asList("1");
-        //table.addRow();
+//        database.addTable(tableName, config);
+//
+//        Table table = database.getTable(tableName);
+//        List<String> row = Arrays.asList("1");
+//        //table.addRow();
     }
 
     @Test

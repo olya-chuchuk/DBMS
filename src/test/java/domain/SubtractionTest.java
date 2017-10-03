@@ -1,4 +1,4 @@
-package Model;
+package domain;
 
 import Exceptions.IllegalArgumentSubstractException;
 import org.junit.Test;

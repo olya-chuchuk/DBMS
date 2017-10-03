@@ -1,4 +1,4 @@
-package Model;
+package domain;
 
 import Exceptions.IllegalPrimaryKeyException;
 import Exceptions.NoPrimaryKeyException;

@@ -3,43 +3,43 @@
   <ID>JAVA</ID>
   <OriginalElement>Controller.Controller</OriginalElement>
   <nodes>
-    <node x="261.4285714285714" y="448.8571428571429">Model.ColumnType</node>
-    <node x="182.85714285714278" y="248.28571428571428">Model.Column</node>
-    <node x="-325.71428571428567" y="307.42857142857144">Model.TableConfig</node>
-    <node x="-135.45454545454544" y="-99.99999999999999">Model.Table</node>
+    <node x="261.4285714285714" y="448.8571428571429">domain.ColumnType</node>
+    <node x="182.85714285714278" y="248.28571428571428">domain.Column</node>
+    <node x="-325.71428571428567" y="307.42857142857144">domain.TableConfig</node>
+    <node x="-135.45454545454544" y="-99.99999999999999">domain.Table</node>
     <node x="544.8571428571428" y="288.28571428571433">Controller.Controller</node>
-    <node x="389.0" y="0.0">Model.Database</node>
+    <node x="389.0" y="0.0">domain.Database</node>
   </nodes>
   <notes />
   <edges>
-    <edge source="Model.Database" target="Model.Table">
+    <edge source="domain.Database" target="domain.Table">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="Model.Column" target="Model.ColumnType">
+    <edge source="domain.Column" target="domain.ColumnType">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="Model.TableConfig" target="Model.Column">
+    <edge source="domain.TableConfig" target="domain.Column">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="Controller.Controller" target="Model.Database">
+    <edge source="Controller.Controller" target="domain.Database">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="Model.Table" target="Model.TableConfig">
+    <edge source="domain.Table" target="domain.TableConfig">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="Model.Table" target="Model.Column">
+    <edge source="domain.Table" target="domain.Column">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
   </edges>
   <settings layout="Hierarchic Group" zoom="0.7000000000000001" x="278.71428571428567" y="235.71428571428567" />
   <SelectedNodes>
-    <node>Model.ColumnType</node>
+    <node>domain.ColumnType</node>
   </SelectedNodes>
   <Categories>
     <Category>Methods</Category>

@@ -1,4 +1,4 @@
-package Model;
+package domain;
 
 import Exceptions.DuplicateKeyException;
 import Exceptions.IllegalArgumentSubstractException;
@@ -156,5 +156,9 @@ public class Table implements Serializable{
         }
         config.setPrimaryKey(keyColumn);
         return config;
+    }
+
+    public int getKeyColumn() {
+        return keyColumn;
     }
 }

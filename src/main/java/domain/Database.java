@@ -1,10 +1,12 @@
-package Model;
+package domain;
 
 import Exceptions.DuplicateTableNameException;
 import Exceptions.NoSuchTableException;
 
 import java.io.*;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -83,5 +85,9 @@ public final class Database implements Serializable{
         }  catch (IOException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public List<Table> getTableList() {
+        return new LinkedList<>(tables.values());
     }
 }
