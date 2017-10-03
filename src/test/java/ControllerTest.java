@@ -229,8 +229,8 @@ public class ControllerTest {
         database.addTable(tableName, config);
 
         Table table = database.getTable(tableName);
-        List<String> row = Arrays.asList("1")
-        table.addRow()
+        List<String> row = Arrays.asList("1");
+        //table.addRow();
     }
 
     @Test
