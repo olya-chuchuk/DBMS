@@ -1,4 +1,7 @@
-import database.Database;
+package Controller;
+
+import Exceptions.NoSuchDatabaseException;
+import Model.Database;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -11,7 +14,7 @@ public class Controller {
     private Set<Database> databaseSet;
 
     public Controller() {
-        databaseSet = new HashSet<Database>();
+        databaseSet = new HashSet<>();
     }
 
     public boolean createDatabase(String dbName) {

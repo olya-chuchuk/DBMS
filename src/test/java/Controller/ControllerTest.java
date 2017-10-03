@@ -1,4 +1,10 @@
-import database.*;
+package Controller;
+
+import Exceptions.DuplicateTableNameException;
+import Exceptions.IllegalPrimaryKeyException;
+import Exceptions.NoPrimaryKeyException;
+import Exceptions.NoSuchTableException;
+import Model.*;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -44,15 +50,14 @@ public class ControllerTest {
         controller.createDatabase(dbName);
         TableConfig tableConfig = new TableConfig();
         tableConfig.addColumn("Column", ColumnType.IntegerType, true);
-        boolean isAdded = controller.getDatabase(dbName).addTable(tableName, tableConfig);
+        controller.getDatabase(dbName).addTable(tableName, tableConfig);
 
         Table table = controller.getDatabase(dbName).getTable(tableName);
 
-        assertTrue(isAdded);
         assertEquals(tableName, table.getName());
     }
 
-    @Test
+    @Test(expected = DuplicateTableNameException.class)
     public void addTwoTablesWithSameNameIntoOneDB() {
         String dbName = "My DB";
         String tableName = "My table";
@@ -61,12 +66,7 @@ public class ControllerTest {
         TableConfig tableConfig = new TableConfig();
         tableConfig.addColumn("Column", ColumnType.IntegerType, true);
         controller.getDatabase(dbName).addTable(tableName, tableConfig);
-        boolean isAdded = controller.getDatabase(dbName).addTable(tableName, tableConfig);
-
-        Table table = controller.getDatabase(dbName).getTable(tableName);
-
-        assertFalse(isAdded);
-        assertEquals(tableName, table.getName());
+        controller.getDatabase(dbName).addTable(tableName, tableConfig);
     }
 
     @Test
@@ -191,16 +191,17 @@ public class ControllerTest {
         Database db = controller.getDatabase(dbName);
         String tableName = "My table";
         TableConfig config = new TableConfig();
-        config.addColumn("Picture column", ColumnType.PictureType, true);
+        config.addColumn("Primary key", ColumnType.IntegerType, true);
+        config.addColumn("Picture column", ColumnType.PictureType);
         db.addTable(tableName, config);
 
         Table table = db.getTable(tableName);
-        Column column = table.getColumns().get(0);
+        Column column = table.getColumns().get(1);
 
         assertEquals(ColumnType.PictureType, column.getColumnType());
     }
 
-    @Test(expected = NoPrimaryKeyExcpetion.class)
+    @Test(expected = NoPrimaryKeyException.class)
     public void createTableWithNoKey() {
         String dbName = "My DB";
         String tableName = "My table";
@@ -213,15 +214,8 @@ public class ControllerTest {
         db.addTable(tableName, tableConfig);
     }
 
-    @Test
-    public void addRowIntoTable() {
-        Controller controller = new Controller();
-
-        String dbName = "My database";
-        controller.createDatabase(dbName);
-        Database database = controller.getDatabase(dbName);
-
-        String tableName = "My table";
+    @Test(expected = IllegalPrimaryKeyException.class)
+    public void createTableConfigWithPrimaryKeyOnPictureColumn() {
         TableConfig config = new TableConfig();
         config.addColumn("Primary key column", ColumnType.IntegerType, true);
         config.addColumn("Char column", ColumnType.IntegerType, true);
@@ -287,6 +281,4 @@ public class ControllerTest {
     public void deleteNonExistingRow() {
 
     }
-
-    //todo add test for primary keys on different types of columns
 }
