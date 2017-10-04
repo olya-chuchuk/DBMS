@@ -33,7 +33,7 @@
 
     <servlet-mapping>
         <servlet-name>DatabaseDispatcherServlet</servlet-name>
-        <url-pattern>/database/*</url-pattern>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
 
 </web-app>

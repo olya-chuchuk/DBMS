@@ -2,12 +2,10 @@ package web;
 
 import domain.Table;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import repository.DatabaseRepository;
 
 import javax.servlet.http.HttpServletRequest;
@@ -34,8 +32,10 @@ public class DatabaseController {
 
     @PostMapping("/create_database")
     public String createDatabase(HttpServletRequest request, Model model) {
-        databaseRepository.createEmptyDatabase(request.getParameter("databaseName"));
-        return database(model);
+        String databaseName = request.getParameter("databaseName");
+        databaseRepository.createEmptyDatabase(databaseName);
+        model.addAttribute("name", databaseName);
+        return "redirect:/database";
     }
 
     @GetMapping("/show_table")

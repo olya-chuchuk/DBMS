@@ -7,10 +7,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
-<%@page import ="domain.*" %>
-<%
-   scripting-language-statements
-%>
+<%@page import="domain.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,33 +19,33 @@
 <table>
     <thead>
     <tr>
-    <c:forEach items="${table.getColumns()}" var="column">
-        <th>"${column.getName()}"</th>
-    </c:forEach>
+        <c:forEach items="${table.getColumns()}" var="column">
+            <th>"${column.getName()}"</th>
+        </c:forEach>
     </tr>
     </thead>
     <c:forEach items="${table.getRows()}" var="row">
         <tr>
             <c:forEach items="${row}" var="value" varStatus="status">
-                <%
-                    Table table = (Table) pageContent.getAttribute("table");
-                    if(type.equals("PictureType")) {
-                %>
-                <td>
-                    <a href=%{row}>${row}</a>
-                </td>
-                <% } else { %>
-                <td>${value}</td>
-                <% } %>
+                <c:choose>
+                    <c:when test="${table.getColumns().get(status.index).getColumnType().equals(ColumnType.PictureType)}">
+                        <td>
+                            <a href="${value}">${value}</a>
+                        </td>
+                    </c:when>
+                    <c:otherwise>
+                        <td>${value}</td>
+                    </c:otherwise>
+                </c:choose>
             </c:forEach>
             <td>
-                <form action="/dbms/database/update_row">
+                <form action="update_row">
                     <input type="hidden" name="tableName" value="${row.get(table.getKeyColumn())}">
                     <input type="submit" value="Update row">
                 </form>
             </td>
             <td>
-                <form action="/dbms/database/delete_row">
+                <form action="delete_row">
                     <input type="hidden" name="tableName" value="${row.get(table.getKeyColumn())}">
                     <input type="submit" value="Delete row">
                 </form>
@@ -58,11 +55,11 @@
 </table>
 
 <br/>
-<form action="/dbms/database/add_table">
+<form action="<c:url value="add_table"/>">
     <input type="submit" value="Add row">
 </form>
 <br/>
-<a href="<c:url value="/database/index"/>">Index page</a>
+<a href="<c:url value="/index"/>">Index page</a>
 
 </body>
 </html>

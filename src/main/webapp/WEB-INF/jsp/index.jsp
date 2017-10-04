@@ -13,12 +13,12 @@
 </head>
 <body>
 
-    <form action="<c:url value="/database/create_database"/>" method="post">
+    <form action="<c:url value="create_database"/>" method="post">
         Database name: <input type="text" name="databaseName">
         <input type="submit" value="Create new database">
     </form>
     <br/>
-    <form action="<c:url value="/database/upload_database"/>" method="post">
+    <form action="<c:url value="upload_database"/>" method="post">
             Filename: <input type="text" name="fileName">
             <input type="submit" value="Upload from file">
         </form>
