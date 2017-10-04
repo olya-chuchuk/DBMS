@@ -22,6 +22,7 @@
         <th>Table name</th>
     </tr>
     </thead>
+    <tbody>
     <c:forEach items="${tableList}" var="table" varStatus="status">
         <tr>
             <td>${status.index + 1}</td>
@@ -40,18 +41,24 @@
             </td>
         </tr>
     </c:forEach>
+    </tbody>
 </table>
 
 <br/>
-<form action="<c:url value="add_table"/>">
+
+<a href="<c:url value="create_table"/>">
     <input type="submit" value="Add table">
-</form>
+</a>
+
 <br/>
+
 <form action="<c:url value="save_to_file"/>">
     Filename: <input type="text" name="fileName">
     <input type="submit" value="Save to file">
 </form>
+
 <br/>
+
 <a href="<c:url value="/index"/>">Index page</a>
 
 </body>

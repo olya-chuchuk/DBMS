@@ -24,6 +24,7 @@
         </c:forEach>
     </tr>
     </thead>
+    <tbody>
     <c:forEach items="${table.getRows()}" var="row">
         <tr>
             <c:forEach items="${row}" var="value" varStatus="status">
@@ -52,14 +53,15 @@
             </td>
         </tr>
     </c:forEach>
+    </tbody>
 </table>
 
 <br/>
-<form action="<c:url value="add_table"/>">
+<a href="<c:url value="add_row"/>">
     <input type="submit" value="Add row">
-</form>
+</a>
 <br/>
-<a href="<c:url value="/index"/>">Index page</a>
+<a href="<c:url value="index"/>">Index page</a>
 
 </body>
 </html>
