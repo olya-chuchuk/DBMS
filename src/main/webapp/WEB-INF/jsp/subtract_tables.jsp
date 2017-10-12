@@ -23,30 +23,27 @@
 </style>
 <body>
 
-<table>
-    <thead>
-        <tr>
-            <td>Column</td>
-            <td>Type</td>
-            <td>Value</td>
-        </tr>
-    </thead>
-    <tbody>
-    <form action="add_constructed_row" method="post">
-        <c:forEach items="${columns}" var="column" varStatus="i">
-            <tr>
-                <td>${column.getName()}</td>
-                <td>${column.getColumnType()}</td>
-                <td>
-                    <input type="text" name="${i.index}">
-                </td>
-            </tr>
+Choose 2 tables with same structure: <br/>
 
+<br/>Add column: <br/>
+<form action="subtract_chosen_tables" method="post">
+    First table:
+    <select name="table1">
+        <c:forEach items="${tables}" var="table">
+            <option value="${table}">${table}</option>
         </c:forEach>
-        <input type="submit" value="Add row">
-    </form>
-    </tbody>
-</table>
+    </select>
+    Second table:
+    <select name="table2">
+        <c:forEach items="${tables}" var="table">
+            <option value="${table}">${table}</option>
+        </c:forEach>
+    </select>
+    <input type="submit" value="Subtract">
+</form>
+<br/>
+<br/>
+<a href="<c:url value="/database"/>">Back to database</a>
 
 </body>
 </html>

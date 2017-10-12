@@ -90,4 +90,8 @@ public final class Database implements Serializable{
     public List<Table> getTableList() {
         return new LinkedList<>(tables.values());
     }
+
+    public List<String> getTableNames() {
+        return new LinkedList<>(tables.keySet());
+    }
 }

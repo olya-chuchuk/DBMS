@@ -65,10 +65,8 @@
 </table>
 
 <br/>
-<a href="<c:url value="add_row"/>"><input type="submit" value="Add row"></a>
-<br/>
-<br/>
 <a href="<c:url value="/database"/>">Back to database</a>
+<br/>
 <br/>
 <a href="<c:url value="index"/>">Index page</a>
 

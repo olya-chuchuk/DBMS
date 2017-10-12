@@ -14,6 +14,13 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>JSP Page</title>
 </head>
+
+<style>
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+</style>
 <body>
 
 Columns: <br/>
@@ -52,6 +59,8 @@ Columns: <br/>
     <input type="hidden" value="${config}" name="config"/>
     <input type="submit" value="Create table"/>
 </form>
+<br/>
+<a href="<c:url value="/database"/>">Back to database</a>
 
 </body>
 </html>

@@ -19,7 +19,12 @@
     </form>
     <br/>
     <form action="<c:url value="upload_database"/>" method="post">
-            Filename: <input type="text" name="fileName">
+            Filename:
+        <select name="fileName">
+            <c:forEach items="${files}" var="file">
+                <option value="${file}">${file}</option>
+            </c:forEach>
+        </select>
             <input type="submit" value="Upload from file">
         </form>
 

@@ -90,6 +90,10 @@ public class Table implements Serializable{
     }
 
     public void updateRow(String key, List<String> newRow) {
+        String newKey = newRow.get(keyColumn);
+        if(!newKey.equals(key) && containsKey(newKey)) {
+            throw new DuplicateKeyException();
+        }
         deleteRow(key);
         addRow(newRow);
     }
@@ -99,6 +103,10 @@ public class Table implements Serializable{
             throw new NoSuchRowException();
         }
         rows.remove(key);
+    }
+
+    public boolean containsKey(String key) {
+        return rows.containsKey(key);
     }
 
     public int getRowsCount() {

@@ -1,6 +1,5 @@
 package repository;
 
-import Controller.Controller;
 import domain.ColumnType;
 import domain.Database;
 import domain.Table;
@@ -35,12 +34,20 @@ public class InMemDatabaseRepository implements DatabaseRepository {
                 "http://worldartsme.com/images/123-clipart-1.jpg");
         List<String> row2 = Arrays.asList("2", "234", "b", "0.2",
                 "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/NY-234.svg/750px-NY-234.svg.png");
-        List<String> newRow = Arrays.asList("3", "123", "a", "0.1",
-                "http://worldartsme.com/images/123-clipart-1.jpg");
+        List<String> row3 = Arrays.asList("3", "345", "c", "0.3",
+                "http://www.zahlenparty.de/wp-content/uploads/345.jpg");
         table.addRow(row1);
         table.addRow(row2);
-        table.addRow(newRow);
+        table.addRow(row3);
 
+        database.addTable(tableName + "1", config);
+        database.addTable(tableName + "2", config);
+        Table table1 = database.getTable(tableName + "1");
+        Table table2 = database.getTable(tableName + "2");
+        table1.addRow(row1);
+        table1.addRow(row2);
+        table2.addRow(row1);
+        table2.addRow(row3);
     }
 
     @Override

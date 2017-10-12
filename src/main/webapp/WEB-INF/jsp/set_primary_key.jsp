@@ -11,7 +11,16 @@
 <head>
     <title>Start page</title>
 </head>
+
+<style>
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+</style>
 <body>
+
+<h1>Choose primary key</h1>
 
 <form action="create_constructed_table" method="post">
     <c:forEach items="${config.getColumns()}" var="column" varStatus="i">

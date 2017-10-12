@@ -32,18 +32,18 @@
         </tr>
     </thead>
     <tbody>
-    <form action="add_constructed_row" method="post">
+    <form action="<c:url value="update_constructed_row"/>" method="post">
         <c:forEach items="${columns}" var="column" varStatus="i">
             <tr>
                 <td>${column.getName()}</td>
                 <td>${column.getColumnType()}</td>
                 <td>
-                    <input type="text" name="${i.index}">
+                    <input type="text" name="${i.index}" value="${row.get(i.index)}">
                 </td>
             </tr>
 
         </c:forEach>
-        <input type="submit" value="Add row">
+        <input type="submit" value="Update row">
     </form>
     </tbody>
 </table>

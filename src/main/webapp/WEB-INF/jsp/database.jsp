@@ -13,7 +13,15 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>JSP Page</title>
 </head>
+<style>
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+</style>
 <body>
+
+<h1>Database "${dbName}":</h1>
 
 <table>
     <thead>
@@ -34,7 +42,7 @@
                 </form>
             </td>
             <td>
-                <form action="<c:url value="delete_table"/>">
+                <form action="<c:url value="delete_table"/>" method="post">
                     <input type="hidden" name="tableName" value="${table.getName()}">
                     <input type="submit" value="Delete table">
                 </form>
@@ -46,13 +54,20 @@
 
 <br/>
 
-<a href="<c:url value="create_table"/>">
-    <input type="submit" value="Add table">
-</a>
+<a href="<c:url value="create_table"/>"><input type="submit" value="Add table"></a>
 
 <br/>
+<br/>
+<form action="<c:url value="subtract_tables"/>" method="post">
+    <input type="submit" value="Subtract tables">
+</form>
 
-<form action="<c:url value="save_to_file"/>">
+<br/>
+<br/>
+
+
+
+<form action="<c:url value="save_to_file"/>" method="post">
     Filename: <input type="text" name="fileName">
     <input type="submit" value="Save to file">
 </form>
