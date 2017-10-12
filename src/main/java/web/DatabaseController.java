@@ -13,6 +13,8 @@ import repository.DatabaseRepository;
 import util.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -32,7 +34,13 @@ public class DatabaseController {
 
     @GetMapping("/index")
     public String index(Model model) {
-        model.addAttribute("files", FileCounter.getAllDbFiles());
+        List<String> fileNames = Collections.EMPTY_LIST;
+        try {
+            fileNames = FileCounter.getAllDbFiles();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        model.addAttribute("files", fileNames);
         return "index";
     }
 

@@ -1,9 +1,6 @@
 package domain;
 
-import Exceptions.DuplicateKeyException;
-import Exceptions.IllegalArgumentSubstractException;
-import Exceptions.IllegalRowException;
-import Exceptions.NoSuchRowException;
+import Exceptions.*;
 
 import java.io.Serializable;
 import java.util.*;
@@ -69,6 +66,10 @@ public class Table implements Serializable{
                     if(row.get(i).length() != 1) {
                         throw new IllegalRowException();
                     }
+                    break;
+                case RealIntervalType:
+                    RealInterval.valueOf(row.get(i));
+                    break;
             }
         }
         List<String> rowCopy = new LinkedList<>(row);

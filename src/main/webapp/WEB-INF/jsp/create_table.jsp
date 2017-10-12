@@ -50,6 +50,7 @@ Columns: <br/>
         <option value="RealType">real</option>
         <option value="CharType">char</option>
         <option value="PictureType">picture</option>
+        <option value="RealIntervalType">realInterval</option>
     </select>
     <input type="submit" value="Add">
 </form>
