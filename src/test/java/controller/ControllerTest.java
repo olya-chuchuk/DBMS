@@ -1,9 +1,9 @@
-package Controller;
+package controller;
 
-import Exceptions.DuplicateTableNameException;
-import Exceptions.IllegalPrimaryKeyException;
-import Exceptions.NoPrimaryKeyException;
-import Exceptions.NoSuchTableException;
+import exceptions.DuplicateTableNameException;
+import exceptions.IllegalPrimaryKeyException;
+import exceptions.NoPrimaryKeyException;
+import exceptions.NoSuchTableException;
 import domain.*;
 import org.junit.Test;
 

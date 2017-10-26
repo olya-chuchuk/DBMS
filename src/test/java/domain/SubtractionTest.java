@@ -1,6 +1,6 @@
 package domain;
 
-import Exceptions.IllegalArgumentSubstractException;
+import exceptions.IllegalArgumentSubstractException;
 import org.junit.Test;
 
 import java.util.Arrays;

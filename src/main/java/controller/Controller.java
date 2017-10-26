@@ -1,6 +1,6 @@
-package Controller;
+package controller;
 
-import Exceptions.NoSuchDatabaseException;
+import exceptions.NoSuchDatabaseException;
 import domain.Database;
 
 import java.util.HashSet;

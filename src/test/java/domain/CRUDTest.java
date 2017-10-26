@@ -1,9 +1,9 @@
 package domain;
 
-import Controller.Controller;
-import Exceptions.DuplicateKeyException;
-import Exceptions.IllegalRowException;
-import Exceptions.NoSuchRowException;
+import controller.Controller;
+import exceptions.DuplicateKeyException;
+import exceptions.IllegalRowException;
+import exceptions.NoSuchRowException;
 import org.junit.Test;
 
 import java.util.Arrays;

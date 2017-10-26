@@ -1,6 +1,6 @@
 package domain;
 
-import Exceptions.*;
+import exceptions.*;
 
 import java.io.Serializable;
 import java.util.*;
@@ -36,6 +36,10 @@ public class Table implements Serializable{
     public List<Column> getColumns() {
 
         return Collections.unmodifiableList(columns);
+    }
+
+    public void tryMethod() {
+        System.out.println("Void method");
     }
 
     public void addRow(List<String> row) {
@@ -169,5 +173,18 @@ public class Table implements Serializable{
 
     public int getKeyColumn() {
         return keyColumn;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder res = new StringBuilder(
+                "name='" + name + '\'' +
+                "\ncolumnsCount=" + columnsCount +
+                "\nkeyColumn=" + keyColumn +
+                "\ncolumns=" + columns.stream().map(Column::getColumnType).collect(Collectors.toList()) +
+                "\nrows=" + '\n');
+
+        rows.values().stream().forEach(row -> res.append(row.toString() + '\n'));
+        return res.toString();
     }
 }

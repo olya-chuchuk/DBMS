@@ -1,6 +1,6 @@
 package domain;
 
-import Exceptions.IllegalRealIntervalFormatException;
+import exceptions.IllegalRealIntervalFormatException;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

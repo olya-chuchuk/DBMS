@@ -1,7 +1,7 @@
 package domain;
 
-import Exceptions.DuplicateTableNameException;
-import Exceptions.NoSuchTableException;
+import exceptions.DuplicateTableNameException;
+import exceptions.NoSuchTableException;
 
 import java.io.*;
 import java.util.HashMap;

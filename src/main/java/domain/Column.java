@@ -7,12 +7,24 @@ import java.io.Serializable;
  */
 public class Column implements Serializable {
 
-    private final String name;
-    private final ColumnType type;
+    private String name;
+    private ColumnType type;
+
 
     Column(String columnName, ColumnType type) {
         name = columnName;
         this.type = type;
+    }
+
+    public Column() {
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setType(String type) {
+        this.type = ColumnType.valueOf(type);
     }
 
     public ColumnType getColumnType() {

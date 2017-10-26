@@ -1,7 +1,7 @@
 package domain;
 
-import Exceptions.IllegalPrimaryKeyException;
-import Exceptions.NoPrimaryKeyException;
+import exceptions.IllegalPrimaryKeyException;
+import exceptions.NoPrimaryKeyException;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -18,6 +18,23 @@ public class TableConfig {
     public TableConfig() {
         columns = new LinkedList<>();
         keyColumn = -1;
+    }
+
+    public void setColumns(List<Column> columns) {
+        this.columns = columns;
+    }
+
+    public int getKeyColumn() {
+        return keyColumn;
+    }
+
+    public void setKeyColumn(int keyColumn) {
+        this.keyColumn = keyColumn;
+    }
+
+    public TableConfig(List<Column> columns, int keyColumn) {
+        this.columns = columns;
+        this.keyColumn = keyColumn;
     }
 
     public void addColumn(String s, ColumnType charType) {
