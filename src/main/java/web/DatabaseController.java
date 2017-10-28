@@ -3,7 +3,6 @@ package web;
 import domain.ColumnType;
 import domain.Database;
 import domain.Table;
-import domain.TableConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -28,9 +27,10 @@ public class DatabaseController {
     private DatabaseRepository databaseRepository;
     private Database currentDatabase;
     private Table currentTable;
-    private TableConfig config = new TableConfig();
     private String tablename = "";
     private String currentKey;
+
+
 
     @GetMapping("/index")
     public String index(Model model) {
@@ -73,15 +73,20 @@ public class DatabaseController {
 
     @GetMapping("/create_table")
     public String createTable(Model model) {
-        model.addAttribute("config", config);
+        model.addAttribute("config", databaseRepository.getTableConfig());
         return "create_table";
+    }
+
+    @GetMapping("/create_table_ajax")
+    public String createTableUsingAjax() {
+        return "create_table_ajax";
     }
 
     @PostMapping("/add_column")
     public String addColumn(@RequestParam("newColumnName") String name,
                             @RequestParam("newColumnType") String type) {
         ColumnType columnType = ColumnType.valueOf(type);
-        config.addColumn(name, columnType);
+        databaseRepository.getTableConfig().addColumn(name, columnType);
         return "redirect:/web/create_table";
     }
 
@@ -106,16 +111,16 @@ public class DatabaseController {
     public String setPrimaryKey(@RequestParam("tableName") String name,
                                 Model model) {
         tablename = name;
-        model.addAttribute("config", config);
+        model.addAttribute("config", databaseRepository.getTableConfig());
         return "set_primary_key";
     }
 
     @PostMapping("/create_constructed_table")
     public String createConstructedTable(@RequestParam("keyColumn") String key) {
-        config.setPrimaryKey(Integer.valueOf(key));
-        databaseRepository.getCurrentDatabase().addTable(tablename, config);
+        databaseRepository.getTableConfig().setPrimaryKey(Integer.valueOf(key));
+        databaseRepository.getCurrentDatabase().addTable(tablename, databaseRepository.getTableConfig());
         tablename = "";
-        config = new TableConfig();
+        databaseRepository.setEmptyTableConfig();
         return "redirect:/web/database";
     }
 

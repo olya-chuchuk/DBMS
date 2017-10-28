@@ -21,6 +21,16 @@ public class RestDatabaseController {
     @Autowired
     private DatabaseRepository repository;
 
+    @PutMapping("/config")
+    public void createNewConfigAjax() {
+        repository.setEmptyTableConfig();
+    }
+
+    @PostMapping("/config")
+    public void addColumnAjax(@RequestParam("columnName") String columnName,
+                              @RequestParam("columnType") String columnType) {
+        repository.getTableConfig().addColumn(columnName, ColumnType.valueOf(columnType));
+    }
     @GetMapping("/database")
     public Database getDatabase() {
         return repository.getCurrentDatabase();
@@ -82,17 +92,17 @@ public class RestDatabaseController {
         return repository.getCurrentDatabase();
     }
 
-    @GetMapping
-    public TableConfig tableConfig() {
-        TableConfig config = new TableConfig();
-        config.addColumn("Primary key column", ColumnType.IntegerType, true);
-        config.addColumn("Integer column", ColumnType.IntegerType, false);
-        config.addColumn("Char column", ColumnType.CharType, false);
-        config.addColumn("Real column", ColumnType.RealType, false);
-        config.addColumn("Picture column", ColumnType.PictureType, false);
-        config.setKeyColumn(0);
-        return config;
-    }
+//    @GetMapping("/")
+//    public TableConfig tableConfig() {
+//        TableConfig config = new TableConfig();
+//        config.addColumn("Primary key column", ColumnType.IntegerType, true);
+//        config.addColumn("Integer column", ColumnType.IntegerType, false);
+//        config.addColumn("Char column", ColumnType.CharType, false);
+//        config.addColumn("Real column", ColumnType.RealType, false);
+//        config.addColumn("Picture column", ColumnType.PictureType, false);
+//        config.setKeyColumn(0);
+//        return config;
+//    }
 
     @ExceptionHandler({Exception.class})
     public ExceptionDto handleException(Exception ex) {

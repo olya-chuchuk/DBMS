@@ -55,13 +55,6 @@ public class TableConfig {
         return Collections.unmodifiableList(columns);
     }
 
-    public int getKeyColumnNumber() {
-        if(keyColumn == -1) {
-            throw new NoPrimaryKeyException();
-        }
-        return keyColumn;
-    }
-
     public void setPrimaryKey(int primaryKey) {
         keyColumn = primaryKey;
     }

@@ -1,6 +1,7 @@
 package repository;
 
 import domain.Database;
+import domain.TableConfig;
 import org.springframework.stereotype.Component;
 
 /**
@@ -10,4 +11,6 @@ public interface DatabaseRepository {
     void createEmptyDatabase(String dbName);
     void setCurrentDatabase(Database db);
     Database getCurrentDatabase();
+    TableConfig getTableConfig();
+    void setEmptyTableConfig();
 }
