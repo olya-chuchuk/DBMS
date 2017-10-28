@@ -56,7 +56,7 @@ public class DatabaseController {
         String databaseName = request.getParameter("databaseName");
         databaseRepository.createEmptyDatabase(databaseName);
         model.addAttribute("name", databaseName);
-        return "redirect:/database";
+        return "redirect:/web/database";
     }
 
     @GetMapping("/show_table")
@@ -82,13 +82,13 @@ public class DatabaseController {
                             @RequestParam("newColumnType") String type) {
         ColumnType columnType = ColumnType.valueOf(type);
         config.addColumn(name, columnType);
-        return "redirect:/create_table";
+        return "redirect:/web/create_table";
     }
 
     @PostMapping("/delete_table")
     public String deleteTalbe(@RequestParam("tableName") String tableName) {
         databaseRepository.getCurrentDatabase().deleteTable(tableName);
-        return "redirect:/database";
+        return "redirect:/web/database";
     }
 
     @PostMapping("/update_row")
@@ -116,7 +116,7 @@ public class DatabaseController {
         databaseRepository.getCurrentDatabase().addTable(tablename, config);
         tablename = "";
         config = new TableConfig();
-        return "redirect:/database";
+        return "redirect:/web/database";
     }
 
     @PostMapping("/update_constructed_row")
@@ -127,7 +127,7 @@ public class DatabaseController {
             row.add(request.getParameter(String.valueOf(i)));
         }
         currentTable.updateRow(currentKey, row);
-        return "redirect:/show_table?tableName=" + currentTable.getName();
+        return "redirect:/web/show_table?tableName=" + currentTable.getName();
     }
 
     @PostMapping("/add_constructed_row")
@@ -138,7 +138,7 @@ public class DatabaseController {
             row.add(request.getParameter(String.valueOf(i)));
         }
         currentTable.addRow(row);
-        return "redirect:/show_table?tableName=" + currentTable.getName();
+        return "redirect:/web/show_table?tableName=" + currentTable.getName();
     }
 
     @RequestMapping("/add_row")
@@ -158,14 +158,14 @@ public class DatabaseController {
     public String saveToFile(@RequestParam("fileName") String fileName) {
         Database database = databaseRepository.getCurrentDatabase();
         Database.serialize(database, fileName + ".db");
-        return "redirect:/database";
+        return "redirect:/web/database";
     }
 
     @PostMapping("/upload_database")
     public String uploadFromFile(@RequestParam("fileName") String fileName) {
         Database database = Database.deserialize(fileName + ".db");
         databaseRepository.setCurrentDatabase(database);
-        return "redirect:/database";
+        return "redirect:/web/database";
     }
 
     @PostMapping("/subtract_tables")
@@ -175,7 +175,7 @@ public class DatabaseController {
     }
 
     @PostMapping("/subtract_chosen_tables")
-    public String subtractChosebTables(@RequestParam("table1") String tablename1,
+    public String subtractChosedTables(@RequestParam("table1") String tablename1,
                                        @RequestParam("table2") String tablename2,
                                        Model model) {
         Database database = databaseRepository.getCurrentDatabase();
