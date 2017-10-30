@@ -20,6 +20,17 @@ Rest web service - also uses Spring (src/main/java/rest package)
 When you run web application, rest url are of format localhost:8082/dbms/rest
 list of links can be found in RestDatabaseController class.
 
+RMI/IIOP (src/main/java/rmi RmiDatabase & /iiop package):
+1. start orbd -ORBInitialPort 1050 (type this command in console from folder /target/classes)
+2. run RmiServer - should print "Working" to console
+	VM options
+	-Djava.naming.factory.initial=com.sun.jndi.cosnaming.CNCtxFactory
+	-Djava.naming.provider.url=iiop://localhost:1050
+3. run RmiClient - shows dbname, list of tables and prints specified table
+	VM options
+	-Djava.naming.factory.initial=com.sun.jndi.cosnaming.CNCtxFactory
+	-Djava.naming.provider.url=iiop://localhost:1050
+
 CORBA (src/main/java/orb/corba package):
 1. orbd -ORBInitialPost 1050
 2. run CorbaServer with (-ORBInitialPort 1050 -ORBInitialHost localhost) program arguments
