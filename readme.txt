@@ -19,3 +19,17 @@ List of filenames on index page is the list of *.db file in root directory of th
 Rest web service - also uses Spring (src/main/java/rest package)
 When you run web application, rest url are of format localhost:8082/dbms/rest
 list of links can be found in RestDatabaseController class.
+
+CORBA (src/main/java/orb/corba package):
+1. orbd -ORBInitialPost 1050
+2. run CorbaServer with (-ORBInitialPort 1050 -ORBInitialHost localhost) program arguments
+3. run CorbaClient with (-ORBInitialPort 1050 -ORBInitialHost localhost) program arguments
+
+CORBA - RMI/IIOP (src/main/java/orb/corba package):
+1. orbd -ORBInitialPost 1050
+2. run CorbaServer with (-ORBInitialPort 1050 -ORBInitialHost localhost) program arguments
+3. run RmiClient with (-Djava.naming.factory.initial=com.sun.jndi.cosnaming.CNCtxFactory
+    -Djava.naming.provider.url=iiop://localhost:1050t) VM Options
+
+AJAX ("/web/create_table_ajax" , webapp/js folder):
+Go to page "/web/create_table_ajax" and construct table

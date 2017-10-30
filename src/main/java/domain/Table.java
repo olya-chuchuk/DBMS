@@ -21,11 +21,14 @@ public class Table implements Serializable{
     private final int keyColumn;
 
     Table(String name, TableConfig config) {
+        if(config.getKeyColumn() == -1) {
+            throw new NoPrimaryKeyException();
+        }
         this.name = name;
         columns = config.getColumns();
         columnsCount = columns.size();
         rows = new HashMap<>();
-        keyColumn = config.getKeyColumnNumber();
+        keyColumn = config.getKeyColumn();
     }
 
     public String getName() {

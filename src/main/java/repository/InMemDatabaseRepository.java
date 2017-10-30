@@ -14,6 +14,7 @@ import java.util.List;
 public class InMemDatabaseRepository implements DatabaseRepository {
 
     private Database database;
+    private TableConfig config;
 
     public InMemDatabaseRepository() {
 
@@ -63,5 +64,15 @@ public class InMemDatabaseRepository implements DatabaseRepository {
     @Override
     public Database getCurrentDatabase() {
         return database;
+    }
+
+    @Override
+    public TableConfig getTableConfig() {
+        return config;
+    }
+
+    @Override
+    public void setEmptyTableConfig() {
+        config = new TableConfig();
     }
 }
