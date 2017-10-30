@@ -70,13 +70,6 @@ public class DatabaseController {
         return "show_table";
     }
 
-
-    @GetMapping("/create_table")
-    public String createTable(Model model) {
-        model.addAttribute("config", databaseRepository.getTableConfig());
-        return "create_table";
-    }
-
     @GetMapping("/create_table_ajax")
     public String createTableUsingAjax() {
         return "create_table_ajax";

@@ -21,6 +21,9 @@ When you run web application, rest url are of format localhost:8082/dbms/rest
 list of links can be found in RestDatabaseController class.
 
 RMI/IIOP (src/main/java/rmi RmiDatabase & /iiop package):
+0. generate RmiServer_Stub.class
+    from folder /target/classes type in cmd
+     "rmic -iiop orb.rmi.iiop.server.RmiServer"
 1. start orbd -ORBInitialPort 1050 (type this command in console from folder /target/classes)
 2. run RmiServer - should print "Working" to console
 	VM options
@@ -36,11 +39,24 @@ CORBA (src/main/java/orb/corba package):
 2. run CorbaServer with (-ORBInitialPort 1050 -ORBInitialHost localhost) program arguments
 3. run CorbaClient with (-ORBInitialPort 1050 -ORBInitialHost localhost) program arguments
 
-CORBA - RMI/IIOP (src/main/java/orb/corba package):
-1. orbd -ORBInitialPost 1050
-2. run CorbaServer with (-ORBInitialPort 1050 -ORBInitialHost localhost) program arguments
-3. run RmiClient with (-Djava.naming.factory.initial=com.sun.jndi.cosnaming.CNCtxFactory
-    -Djava.naming.provider.url=iiop://localhost:1050t) VM Options
-
 AJAX ("/web/create_table_ajax" , webapp/js folder):
+Start web application
 Go to page "/web/create_table_ajax" and construct table
+
+Google App Engine
+Rest web server is available on URL dbms-184410.appspot.com
+(e.g. http://dbms-184410.appspot.com/rest/database)
+Dashboard URL https://console.cloud.google.com/home/dashboard
+App Engine -> Versions
+
+RMI/IIOP - CORBA (src/main/java/orb/rmi_corba package):
+0. compile classes
+1. from console cd taget/classes
+2. rmic -iiop orb.rmi_corba.RmiServer
+3. orbd -ORBInitialPort 1050
+4. run RmiServer with
+    (-Djava.naming.factory.initial=com.sun.jndi.cosnaming.CNCtxFactory
+    -Djava.naming.provider.url=iiop://localhost:1050) VM Options
+5. run RmiClient with
+(-ORBInitialPort 1050 -ORBInitialHost localhost) program arguments
+

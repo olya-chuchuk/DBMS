@@ -50,10 +50,6 @@ public class CorbaServer extends RmiDatabasePOA {
     }
 
     public static void main(String[] args) {
-
-        if(System.getSecurityManager() != null) {
-            System.setSecurityManager(null);
-        }
         try {
             ORB orb = ORB.init(args, null);
             POA rootPoa = POAHelper.narrow(

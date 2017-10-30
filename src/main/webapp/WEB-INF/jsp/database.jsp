@@ -54,7 +54,7 @@
 
 <br/>
 
-<a href="<c:url value="create_table"/>"><input type="submit" value="Add table"></a>
+<a href="<c:url value="create_table_ajax"/>"><input type="submit" value="Add table"></a>
 
 <br/>
 <br/>
