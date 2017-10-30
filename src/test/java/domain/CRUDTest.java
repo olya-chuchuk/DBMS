@@ -451,7 +451,7 @@ public class CRUDTest {
         table.updateRow("1", newRow);
     }
 
-    @Test(expected = NoSuchRowException.class)
+    @Test(expected = DuplicateKeyException.class)
     public void updateNonExistingRow() {
             Controller controller = new Controller();
 
