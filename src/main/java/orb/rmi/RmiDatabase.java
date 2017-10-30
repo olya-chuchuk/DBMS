@@ -7,7 +7,8 @@ import java.rmi.RemoteException;
 import java.util.List;
 
 public interface RmiDatabase extends Remote {
-    public String getName() throws RemoteException;
-    public List<String> getTableNames() throws RemoteException;
-    public Table getTable(String tableName) throws RemoteException;
+    String getName() throws RemoteException;
+    List<String> getTableNames() throws RemoteException;
+    Table getTable(String tableName) throws RemoteException;
+    Table subtract(String tableName1, String tableName2) throws RemoteException;
 }

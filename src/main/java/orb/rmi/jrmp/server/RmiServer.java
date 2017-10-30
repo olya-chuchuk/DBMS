@@ -1,5 +1,6 @@
-package orb.rmi.server;
+package orb.rmi.jrmp.server;
 
+import domain.Database;
 import domain.Table;
 import orb.rmi.RmiDatabase;
 import repository.DatabaseRepository;
@@ -34,6 +35,15 @@ public class RmiServer extends RemoteObject implements RmiDatabase{
     @Override
     public Table getTable(String tableName) throws RemoteException {
         return repository.getCurrentDatabase().getTable(tableName);
+    }
+
+    @Override
+    public Table subtract(String tableName1, String tableName2) throws RemoteException {
+        Database database = repository.getCurrentDatabase();
+        Table table1 = database.getTable(tableName1);
+        Table table2 = database.getTable(tableName2);
+        Table res = table1.subtract(table2);
+        return res;
     }
 
     public static void main(String[] args) {
